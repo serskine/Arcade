@@ -12,12 +12,10 @@ import java.util.stream.Collectors;
 
 public class ArcadeInputController implements KeyListener {
 
-    public interface Listener extends EventListener {
-        void onStateChanged(ArcadeControlsState state);
-    }
-
     private final Announcer<Listener> listeners = Announcer.to(Listener.class);
     private final Set<Integer> pressedCodes = new HashSet<>();
+
+    private ArcadeBindingsState bindingsState = ArcadeBindingsState.getDefault();
 
     public ArcadeInputController() {
     }
@@ -81,6 +79,17 @@ public class ArcadeInputController implements KeyListener {
     }
 
     public final Optional<ArcadeButton> findButton(int code) {
-        return ArcadeButton.find(code); // This is to slow. Speed up.
+        if (bindingsState == null) {
+            return ArcadeButton.find(code); // This is to slow. Speed up.
+        } else {
+            final Optional<BindingState> bindingOpt = bindingsState.getBindingFromCode(code);
+            return bindingOpt.isEmpty() ? Optional.empty() : Optional.of(bindingOpt.get().button);
+        }
     }
+
+
+    public interface Listener extends EventListener {
+        void onStateChanged(ArcadeControlsState state);
+    }
+
 }

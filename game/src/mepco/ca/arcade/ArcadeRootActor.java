@@ -10,11 +10,15 @@ public abstract class ArcadeRootActor<World> implements ArcadeActor {
 
     private ArcadeControlsState controlsState;
     private ArcadeMonitorState monitorState;
+    private ArcadeBindingsState bindingsState;
+
     private World world;
+    private boolean isChanged = true;
 
     public ArcadeRootActor() {
         setControlsState(new ArcadeControlsState());
         setMonitorState(new ArcadeMonitorState());
+        setBindingsState(ArcadeBindingsState.getDefault());
     }
 
     @Override
@@ -22,9 +26,13 @@ public abstract class ArcadeRootActor<World> implements ArcadeActor {
 
     @Override
     public void render(Graphics2D g) {
-        g.setBackground((monitorState.isPowered() ? monitorState.getBackgroundColor() : Color.BLACK));
-        g.rotate(monitorState.getOrientationState().radians);
-        g.fillRect(0, 0, monitorState.getWidth(), monitorState.getHeight());
+        // We will only render if the state has changed
+        if (isChanged()) {
+            g.setBackground((monitorState.isPowered() ? monitorState.getBackgroundColor() : Color.BLACK));
+            g.rotate(monitorState.getOrientationState().radians);
+            g.fillRect(0, 0, monitorState.getWidth(), monitorState.getHeight());
+            setChanged(false);
+        }
     };
 
     public synchronized ArcadeControlsState getControlsState() {
@@ -33,7 +41,7 @@ public abstract class ArcadeRootActor<World> implements ArcadeActor {
 
     public synchronized void setControlsState(ArcadeControlsState controlsState) {
         this.controlsState = controlsState;
-        onChange();
+        setChanged(true);
     }
 
     public synchronized World getWorld() {
@@ -42,7 +50,7 @@ public abstract class ArcadeRootActor<World> implements ArcadeActor {
 
     public synchronized void setWorld(World world) {
         this.world = world;
-        onChange();
+        setChanged(true);
     }
 
     public abstract void onChange();
@@ -73,6 +81,25 @@ public abstract class ArcadeRootActor<World> implements ArcadeActor {
 
     public synchronized void setMonitorState(ArcadeMonitorState monitorState) {
         this.monitorState = monitorState;
-        onChange();
+        setChanged(true);
+    }
+
+    public boolean isChanged() {
+        return isChanged;
+    }
+
+    public void setChanged(boolean changed) {
+        isChanged = changed;
+        if (changed) {
+            onChange();
+        }
+    }
+
+    public ArcadeBindingsState getBindingsState() {
+        return bindingsState;
+    }
+
+    public void setBindingsState(ArcadeBindingsState bindingsState) {
+        this.bindingsState = bindingsState;
     }
 }

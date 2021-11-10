@@ -44,24 +44,24 @@ public class ArcadeControlsState {
         this.flipperRight = (pressedButtons.contains(ArcadeButton.RIGHT_FLIPPER) ? PRESSED : RELEASED);
 
         this.p1CoinSlot = (pressedButtons.contains(ArcadeButton.P1_COIN_SLOT) ? PRESSED : RELEASED);
-        this.p1Start = (pressedButtons.contains(ArcadeButton.P1_START_BUTTON) ? PRESSED : RELEASED);
-        this.p1Select = (pressedButtons.contains(ArcadeButton.P1_SELECT_BUTTON) ? PRESSED : RELEASED);
-        this.p1Top1 = (pressedButtons.contains(ArcadeButton.P1_TOP_BUTTON_1) ? PRESSED : RELEASED);
-        this.p1Top2 = (pressedButtons.contains(ArcadeButton.P1_TOP_BUTTON_2) ? PRESSED : RELEASED);
-        this.p1Top3 = (pressedButtons.contains(ArcadeButton.P1_TOP_BUTTON_3) ? PRESSED : RELEASED);
-        this.p1Bottom1 = (pressedButtons.contains(ArcadeButton.P1_BOTTOM_BUTTON_1) ? PRESSED : RELEASED);
-        this.p1Bottom2 = (pressedButtons.contains(ArcadeButton.P1_BOTTOM_BUTTON_2) ? PRESSED : RELEASED);
-        this.p1Bottom3 = (pressedButtons.contains(ArcadeButton.P1_BOTTOM_BUTTON_3) ? PRESSED : RELEASED);
+        this.p1Start = (pressedButtons.contains(ArcadeButton.P1_START) ? PRESSED : RELEASED);
+        this.p1Select = (pressedButtons.contains(ArcadeButton.P1_SELECT) ? PRESSED : RELEASED);
+        this.p1Top1 = (pressedButtons.contains(ArcadeButton.P1_TOP_1) ? PRESSED : RELEASED);
+        this.p1Top2 = (pressedButtons.contains(ArcadeButton.P1_TOP_2) ? PRESSED : RELEASED);
+        this.p1Top3 = (pressedButtons.contains(ArcadeButton.P1_TOP_3) ? PRESSED : RELEASED);
+        this.p1Bottom1 = (pressedButtons.contains(ArcadeButton.P1_BOTTOM_1) ? PRESSED : RELEASED);
+        this.p1Bottom2 = (pressedButtons.contains(ArcadeButton.P1_BOTTOM_2) ? PRESSED : RELEASED);
+        this.p1Bottom3 = (pressedButtons.contains(ArcadeButton.P1_BOTTOM_3) ? PRESSED : RELEASED);
 
         this.p2CoinSlot = (pressedButtons.contains(ArcadeButton.P2_COIN_SLOT) ? PRESSED : RELEASED);
-        this.p2Start = (pressedButtons.contains(ArcadeButton.P2_START_BUTTON) ? PRESSED : RELEASED);
-        this.p2Select = (pressedButtons.contains(ArcadeButton.P2_SELECT_BUTTON) ? PRESSED : RELEASED);
-        this.p2Top1 = (pressedButtons.contains(ArcadeButton.P2_TOP_BUTTON_1) ? PRESSED : RELEASED);
-        this.p2Top2 = (pressedButtons.contains(ArcadeButton.P2_TOP_BUTTON_2) ? PRESSED : RELEASED);
-        this.p2Top3 = (pressedButtons.contains(ArcadeButton.P2_TOP_BUTTON_3) ? PRESSED : RELEASED);
-        this.p2Bottom1 = (pressedButtons.contains(ArcadeButton.P2_BOTTOM_BUTTON_1) ? PRESSED : RELEASED);
-        this.p2Bottom2 = (pressedButtons.contains(ArcadeButton.P2_BOTTOM_BUTTON_2) ? PRESSED : RELEASED);
-        this.p2Bottom3 = (pressedButtons.contains(ArcadeButton.P2_BOTTOM_BUTTON_3) ? PRESSED : RELEASED);
+        this.p2Start = (pressedButtons.contains(ArcadeButton.P2_START) ? PRESSED : RELEASED);
+        this.p2Select = (pressedButtons.contains(ArcadeButton.P2_SELECT) ? PRESSED : RELEASED);
+        this.p2Top1 = (pressedButtons.contains(ArcadeButton.P2_TOP_1) ? PRESSED : RELEASED);
+        this.p2Top2 = (pressedButtons.contains(ArcadeButton.P2_TOP_2) ? PRESSED : RELEASED);
+        this.p2Top3 = (pressedButtons.contains(ArcadeButton.P2_TOP_3) ? PRESSED : RELEASED);
+        this.p2Bottom1 = (pressedButtons.contains(ArcadeButton.P2_BOTTOM_1) ? PRESSED : RELEASED);
+        this.p2Bottom2 = (pressedButtons.contains(ArcadeButton.P2_BOTTOM_2) ? PRESSED : RELEASED);
+        this.p2Bottom3 = (pressedButtons.contains(ArcadeButton.P2_BOTTOM_3) ? PRESSED : RELEASED);
 
         this.joystick1 = toJoystickState(
                 pressedButtons.contains(ArcadeButton.P1_UP),
