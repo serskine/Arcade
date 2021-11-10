@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="ArcadeDebugger">
+    <output-path>$PROJECT_DIR$/out/artifacts/ArcadeDebugger/</output-path>
+    <root id="archive" name="game.jar">
+      <element id="module-output" name="game" />
+    </root>
+  </artifact>
+</component>
