@@ -1,4 +1,4 @@
-package mepco.ca.conway;
+package mepco.ca.games.conway;
 
 import javax.swing.event.MouseInputListener;
 import java.awt.*;

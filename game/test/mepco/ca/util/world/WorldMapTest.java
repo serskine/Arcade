@@ -1,6 +1,6 @@
 package mepco.ca.util.world;
 
-import mepco.ca.conway.WorldMap;
+import mepco.ca.games.conway.WorldMap;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

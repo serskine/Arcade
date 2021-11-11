@@ -1,4 +1,4 @@
-package mepco.ca.conway;
+package mepco.ca.games.conway;
 
 import mepco.ca.util.world.FiniteWorld;
 

@@ -1,4 +1,4 @@
-package mepco.ca.dodge;
+package mepco.ca.games.dodge;
 
 import java.awt.*;
 

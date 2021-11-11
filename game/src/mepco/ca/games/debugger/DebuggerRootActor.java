@@ -1,4 +1,4 @@
-package mepco.ca.debugger;
+package mepco.ca.games.debugger;
 
 import mepco.ca.arcade.*;
 import mepco.ca.util.Text;
@@ -7,6 +7,7 @@ import mepco.ca.util.draw.Draw;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.Set;
 
 public class DebuggerRootActor extends ArcadeRootActor {
 
@@ -92,35 +93,48 @@ public class DebuggerRootActor extends ArcadeRootActor {
 
         renderMonitorState(g, pMonitor, getMonitorState());
         renderControlsState(g, pControls, getControlsState());
-        renderBindingsState(g, pBindings, getBindingsState());
+        renderBindingsState(g, pBindings, getBindingsState(), getControlsState().pressedButtons);
 
     }
 
-    private void renderBindingsState(Graphics2D g, Point p, ArcadeBindingsState bindingsState) {
+    private void renderBindingsState(Graphics2D g, Point p, ArcadeBindingsState bindingsState, Set<ArcadeButton> pressedButtons) {
 
-        final int div = ArcadeButton.values().length / 2;
+        final int div = ArcadeButton.values().length / 2 - ArcadeButton.values().length % 2;
         final int colLeftX = p.x;
         final int colRightX = p.x + BINDINGS_AREA_WIDTH/2;
         final int numButtons = ArcadeButton.values().length;
-        for(int i=0; i<numButtons; i++) {
-            final ArcadeButton arcadeButton = ArcadeButton.values()[i];
-            final int bindingY = p.y +  (    (i > div)
-                                        ?   (BINDING_HEIGHT * (i - div - 1))
-                                        :   BINDING_HEIGHT * i
-                                        );
-            Point pBinding;
-            pBinding = (i<=div)
-                    ?   new Point(colLeftX, bindingY)
-                    :   new Point(colRightX, bindingY);
 
-            final Optional<BindingState> bindingOpt = bindingsState.getBindingFromButton(arcadeButton);
-            renderBinding(g, pBinding, arcadeButton, bindingOpt);
+        // We ensure all left column buttons are displayed first
 
+        for(ButtonState expectedState : ButtonState.values()) {
+            for (int i = 0; i < numButtons; i++) {
+                final ArcadeButton arcadeButton = ArcadeButton.values()[i];
+                final int bindingY = p.y + ((i > div)
+                        ? (BINDING_HEIGHT * (i - div - 1))
+                        : BINDING_HEIGHT * i
+                );
+                Point pBinding;
+                pBinding = (i <= div)
+                        ? new Point(colLeftX, bindingY)
+                        : new Point(colRightX, bindingY);
+
+                final Optional<BindingState> bindingOpt = bindingsState.getBindingFromButton(arcadeButton);
+                final boolean isPressed = pressedButtons.contains(arcadeButton);    // It should be false if not bound.
+                ButtonState observedState = (bindingOpt.isEmpty()) ? ButtonState.ERROR : (isPressed ? ButtonState.PRESSED : ButtonState.RELEASED);
+                if (expectedState == observedState) {
+                    renderBinding(g, pBinding, arcadeButton, bindingOpt, isPressed);
+                }
+
+            }
         }
     }
 
-    private void renderBinding(Graphics2D g, Point p, ArcadeButton button, Optional<BindingState> bindingStateOptional) {
-        final Color color = (bindingStateOptional.isPresent()) ? COLOR_ACTIVE : COLOR_ERROR;
+    private void renderBinding(Graphics2D g, Point p, ArcadeButton button, Optional<BindingState> bindingStateOptional, boolean isPressed) {
+        final Color color = (bindingStateOptional.isEmpty())
+                ?   COLOR_ERROR
+                :   (isPressed)
+                    ?   COLOR_ACTIVE
+                    :   COLOR_FOREGROUND;
         final int bTextWidth = Arrays.stream(ArcadeButton.values()).sequential().map(b -> b.toString().length()).reduce(0, (l,r) -> Math.max(l,r));
 
         g.setColor(color);

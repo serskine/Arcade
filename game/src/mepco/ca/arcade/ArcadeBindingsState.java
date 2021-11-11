@@ -19,6 +19,17 @@ public class ArcadeBindingsState {
         return arcadeBindingsState;
     }
 
+    public static final ArcadeBindingsState getRandom() {
+        final ArcadeBindingsState arcadeBindingsState = new ArcadeBindingsState();
+        Random r = new Random();
+        for(ArcadeButton arcadeButton : ArcadeButton.values()) {
+            if (r.nextInt(2)==0) {
+                arcadeBindingsState.setBinding(arcadeButton, arcadeButton.code);
+            }
+        }
+        return arcadeBindingsState;
+    }
+
     private ArcadeBindingsState() {
         buttonToCodeMap = new HashMap<>();
         codeToButtonMap = new HashMap<>();
@@ -41,16 +52,16 @@ public class ArcadeBindingsState {
         if (value==null) {
             return Optional.empty();
         } else {
-            return Optional.of(new BindingState(keyCode, value));
+            return Optional.of(new BindingState(value, keyCode));
         }
     }
 
     public synchronized final Optional<BindingState> getBindingFromButton(ArcadeButton button) {
-        final Integer value = buttonToCodeMap.get(button);
-        if (value==null) {
+        final Integer keyCode = buttonToCodeMap.get(button);
+        if (keyCode==null) {
             return Optional.empty();
         } else {
-            return Optional.of(new BindingState(value, button));
+            return Optional.of(new BindingState(button, keyCode));
         }
     }
 
@@ -75,7 +86,9 @@ public class ArcadeBindingsState {
         return prevBindingOpt;
     }
 
-
+    public synchronized void setBinding(ArcadeButton button, Integer code) {
+        this.setBinding(new BindingState(button, code));
+    }
     /**
      * This will remove the previous bindings to both the code and the button
      * @param binding
@@ -94,7 +107,7 @@ public class ArcadeBindingsState {
      * @return
      */
     public synchronized List<BindingState> getBindings() {
-        return codeToButtonMap.entrySet().stream().map(e -> new BindingState(e.getKey(), e.getValue())).collect(Collectors.toList());
+        return buttonToCodeMap.entrySet().stream().map(e -> new BindingState(e.getKey(), e.getValue())).collect(Collectors.toList());
     }
 
     /**

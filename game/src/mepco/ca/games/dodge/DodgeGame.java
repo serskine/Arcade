@@ -1,20 +1,23 @@
-package mepco.ca.debugger;
+package mepco.ca.games.dodge;
 
 import mepco.ca.arcade.ArcadeGame;
 import mepco.ca.arcade.ArcadeRootActor;
 
-public class DebuggerGame extends ArcadeGame {
+public class DodgeGame extends ArcadeGame {
 
-    public DebuggerGame() {
+    public DodgeGame() {
         super();
     }
 
     @Override
     public ArcadeRootActor createRootActor() {
-        return new DebuggerRootActor();
+        return new DodgeRootActor();
     }
 
     public static void main(String args[]){
-        new DebuggerGame();
+        new DodgeGame();
     }
+
+
 }
+

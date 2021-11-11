@@ -4,7 +4,7 @@ public class BindingState {
     public final ArcadeButton button;
     public final int code;
 
-    public BindingState(int code, ArcadeButton button) {
+    public BindingState(ArcadeButton button, int code) {
         this.button = button;
         this.code = code;
     }

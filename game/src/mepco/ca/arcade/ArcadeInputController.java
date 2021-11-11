@@ -15,7 +15,7 @@ public class ArcadeInputController implements KeyListener {
     private final Announcer<Listener> listeners = Announcer.to(Listener.class);
     private final Set<Integer> pressedCodes = new HashSet<>();
 
-    private ArcadeBindingsState bindingsState = ArcadeBindingsState.getDefault();
+    private ArcadeBindingsState bindingsState = ArcadeBindingsState.getEmpty();
 
     public ArcadeInputController() {
     }
@@ -78,13 +78,22 @@ public class ArcadeInputController implements KeyListener {
         }
     }
 
+    /**
+     * We did not find a button for the binding Therefore it can't be pressed.564545454554
+     * @param code
+     * @return
+     */
     public final Optional<ArcadeButton> findButton(int code) {
         if (bindingsState == null) {
-            return ArcadeButton.find(code); // This is to slow. Speed up.
+            return Optional.empty(); // This is to slow. Speed up.
         } else {
             final Optional<BindingState> bindingOpt = bindingsState.getBindingFromCode(code);
             return bindingOpt.isEmpty() ? Optional.empty() : Optional.of(bindingOpt.get().button);
         }
+    }
+
+    public void setBindingsState(ArcadeBindingsState bindingsState) {
+        this.bindingsState = bindingsState;
     }
 
 

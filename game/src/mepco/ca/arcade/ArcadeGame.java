@@ -30,6 +30,7 @@ public abstract class ArcadeGame extends Canvas implements Runnable, ArcadeInput
         this.arcadeInputController = new ArcadeInputController();
         this.addKeyListener(this.arcadeInputController);
         this.arcadeInputController.addListener(this);
+        this.arcadeInputController.setBindingsState(this.rootActor.getBindingsState());
 
     }
 
