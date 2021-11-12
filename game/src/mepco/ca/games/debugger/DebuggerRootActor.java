@@ -229,8 +229,8 @@ public class DebuggerRootActor extends ArcadeRootActor {
                 controlsState.p1Bottom2,
                 controlsState.p1Bottom3,
                 controlsState.p1Start,
-                controlsState.p1Select,
-                controlsState.p1CoinSlot
+                controlsState.p1Extra1,
+                controlsState.p1Extra2
         );
         renderPlayerControls(g,
                 p2,
@@ -242,8 +242,8 @@ public class DebuggerRootActor extends ArcadeRootActor {
                 controlsState.p2Bottom2,
                 controlsState.p2Bottom3,
                 controlsState.p2Start,
-                controlsState.p2Select,
-                controlsState.p2CoinSlot
+                controlsState.p2Extra1,
+                controlsState.p2Extra2
         );
 
         final int padFlipper = UNIT;
@@ -268,8 +268,8 @@ public class DebuggerRootActor extends ArcadeRootActor {
         ButtonState bottomMiddle,
         ButtonState bottomRight,
         ButtonState startButton,
-        ButtonState selectButton,
-        ButtonState coinSlot
+        ButtonState extraLeft,
+        ButtonState extraRight
     ) {
         final int innerWidth = CONTROLLER_WIDTH - UNIT - UNIT;
         final int innerHeight = CONTROLLER_HEIGHT - UNIT - UNIT;
@@ -283,11 +283,11 @@ public class DebuggerRootActor extends ArcadeRootActor {
         g.setColor(COLOR_FOREGROUND);
         g.drawRect(p.x, p.y, CONTROLLER_WIDTH, CONTROLLER_HEIGHT);
 
-        final Point pCoinSlot = new Point(pInnerOrigin.x + JOYSTICK_DIAM + UNIT, pInnerOrigin.y + JOYSTICK_RADIUS - BUTTON_RADIUS);
-        final Point pStartButton = new Point(pCoinSlot.x + COIN_SLOT_WIDTH + UNIT, pCoinSlot.y);
-        final Point pSelectButton = new Point(pStartButton.x + BUTTON_DIAM + UNIT, pStartButton.y);
+        final Point pStartButton = new Point(pInnerOrigin.x + JOYSTICK_DIAM + UNIT, pInnerOrigin.y + JOYSTICK_RADIUS - BUTTON_RADIUS);
+        final Point pExtraLeft = new Point(pStartButton.x + COIN_SLOT_WIDTH + UNIT, pStartButton.y);
+        final Point pExtraRight = new Point(pExtraLeft.x + BUTTON_DIAM + UNIT, pExtraLeft.y);
 
-        final Point pTopLeftButton = new Point(pSelectButton.x + BUTTON_DIAM + UNIT, pInnerOrigin.y);
+        final Point pTopLeftButton = new Point(pExtraRight.x + BUTTON_DIAM + UNIT, pInnerOrigin.y);
         final Point pTopMiddleButton = new Point(pTopLeftButton.x + BUTTON_DIAM + UNIT, pTopLeftButton.y);
         final Point pTopRightButton = new Point(pTopMiddleButton.x + BUTTON_DIAM + UNIT, pTopMiddleButton.y);
 
@@ -297,8 +297,10 @@ public class DebuggerRootActor extends ArcadeRootActor {
 
         renderJoystick(g, pJoy, joystickState);
 
-        renderButton(g, pStartButton, startButton);
-        renderButton(g, pSelectButton, selectButton);
+        renderCoinSlot(g, pStartButton, startButton);
+
+        renderButton(g, pExtraLeft, extraLeft);
+        renderButton(g, pExtraRight, extraRight);
 
         renderButton(g, pTopLeftButton, topLeft);
         renderButton(g, pTopMiddleButton, topMiddle);
@@ -307,7 +309,6 @@ public class DebuggerRootActor extends ArcadeRootActor {
         renderButton(g, pBottomMiddleButton, bottomMiddle);
         renderButton(g, pBottomRightButton, bottomRight);
 
-        renderCoinSlot(g, pCoinSlot, coinSlot);
     }
 
     private Color buttonColor(ButtonState buttonState) {

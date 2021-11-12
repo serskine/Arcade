@@ -11,23 +11,23 @@ public class ArcadeControlsState {
     public final JoystickState joystick1;
     public final JoystickState joystick2;
     public final ButtonState p1Start;
-    public final ButtonState p1Select;
-    public final ButtonState p1CoinSlot;
     public final ButtonState p1Top1;
     public final ButtonState p1Top2;
     public final ButtonState p1Top3;
     public final ButtonState p1Bottom1;
     public final ButtonState p1Bottom2;
     public final ButtonState p1Bottom3;
+    public final ButtonState p1Extra1;
+    public final ButtonState p1Extra2;
     public final ButtonState p2Start;
-    public final ButtonState p2Select;
-    public final ButtonState p2CoinSlot;
     public final ButtonState p2Top1;
     public final ButtonState p2Top2;
     public final ButtonState p2Top3;
     public final ButtonState p2Bottom1;
     public final ButtonState p2Bottom2;
     public final ButtonState p2Bottom3;
+    public final ButtonState p2Extra1;
+    public final ButtonState p2Extra2;
     public final ButtonState flipperLeft;
     public final ButtonState flipperRight;
 
@@ -43,9 +43,9 @@ public class ArcadeControlsState {
         this.flipperLeft = (pressedButtons.contains(ArcadeButton.LEFT_FLIPPER) ? PRESSED : RELEASED);
         this.flipperRight = (pressedButtons.contains(ArcadeButton.RIGHT_FLIPPER) ? PRESSED : RELEASED);
 
-        this.p1CoinSlot = (pressedButtons.contains(ArcadeButton.P1_EXTRA_1) ? PRESSED : RELEASED);
         this.p1Start = (pressedButtons.contains(ArcadeButton.P1_START) ? PRESSED : RELEASED);
-        this.p1Select = (pressedButtons.contains(ArcadeButton.P1_EXTRA_2) ? PRESSED : RELEASED);
+        this.p1Extra1 = (pressedButtons.contains(ArcadeButton.P1_EXTRA_1) ? PRESSED : RELEASED);
+        this.p1Extra2 = (pressedButtons.contains(ArcadeButton.P1_EXTRA_2) ? PRESSED : RELEASED);
         this.p1Top1 = (pressedButtons.contains(ArcadeButton.P1_TOP_1) ? PRESSED : RELEASED);
         this.p1Top2 = (pressedButtons.contains(ArcadeButton.P1_TOP_2) ? PRESSED : RELEASED);
         this.p1Top3 = (pressedButtons.contains(ArcadeButton.P1_TOP_3) ? PRESSED : RELEASED);
@@ -53,9 +53,9 @@ public class ArcadeControlsState {
         this.p1Bottom2 = (pressedButtons.contains(ArcadeButton.P1_BOTTOM_2) ? PRESSED : RELEASED);
         this.p1Bottom3 = (pressedButtons.contains(ArcadeButton.P1_BOTTOM_3) ? PRESSED : RELEASED);
 
-        this.p2CoinSlot = (pressedButtons.contains(ArcadeButton.P2_EXTRA_1) ? PRESSED : RELEASED);
         this.p2Start = (pressedButtons.contains(ArcadeButton.P2_START) ? PRESSED : RELEASED);
-        this.p2Select = (pressedButtons.contains(ArcadeButton.P2_EXTRA_2) ? PRESSED : RELEASED);
+        this.p2Extra1 = (pressedButtons.contains(ArcadeButton.P2_EXTRA_1) ? PRESSED : RELEASED);
+        this.p2Extra2 = (pressedButtons.contains(ArcadeButton.P2_EXTRA_2) ? PRESSED : RELEASED);
         this.p2Top1 = (pressedButtons.contains(ArcadeButton.P2_TOP_1) ? PRESSED : RELEASED);
         this.p2Top2 = (pressedButtons.contains(ArcadeButton.P2_TOP_2) ? PRESSED : RELEASED);
         this.p2Top3 = (pressedButtons.contains(ArcadeButton.P2_TOP_3) ? PRESSED : RELEASED);
@@ -109,8 +109,8 @@ public class ArcadeControlsState {
         sb.append("{").append(newLine)
             .append(tab).append("joystick1:").append(joystick1).append(newLine)
             .append(tab).append("p1Start:").append(p1Start).append(newLine)
-            .append(tab).append("p1Select:").append(p1Select).append(newLine)
-            .append(tab).append("p1CoinSlot:").append(p1CoinSlot).append(newLine)
+            .append(tab).append("p1Extra1:").append(p1Extra1).append(newLine)
+            .append(tab).append("p1Extra2:").append(p1Extra2).append(newLine)
             .append(tab).append("p1Top1:").append(p1Top1).append(newLine)
             .append(tab).append("p1Top2:").append(p1Top2).append(newLine)
             .append(tab).append("p1Top3:").append(p1Top3).append(newLine)
@@ -118,8 +118,8 @@ public class ArcadeControlsState {
             .append(tab).append("p1Bottom2:").append(p1Bottom2).append(newLine)
             .append(tab).append("p1Bottom3:").append(p1Bottom3).append(newLine)
             .append(tab).append("p2Start:").append(p2Start).append(newLine)
-            .append(tab).append("p2Select:").append(p2Select).append(newLine)
-            .append(tab).append("p2CoinSlot:").append(p2CoinSlot).append(newLine)
+            .append(tab).append("p2Extra1:").append(p2Extra1).append(newLine)
+            .append(tab).append("p2Extra2:").append(p2Extra2).append(newLine)
             .append(tab).append("p2Top1:").append(p2Top1).append(newLine)
             .append(tab).append("p2Top2:").append(p2Top2).append(newLine)
             .append(tab).append("p2Top3:").append(p2Top3).append(newLine)
