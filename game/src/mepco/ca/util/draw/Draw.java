@@ -1,6 +1,7 @@
 package mepco.ca.util.draw;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 public class Draw {
 
@@ -102,5 +103,27 @@ public class Draw {
         }
     }
 
+    public static void drawPoly(Graphics g, Point2D.Double... p) {
+        int[] xPoints = new int[p.length];
+        int[] yPoints = new int[p.length];
 
+        for(int i=0; i<p.length; i++) {
+            xPoints[i] = (int) p[i].getX();
+            yPoints[i] = (int) p[i].getY();
+        }
+
+        g.drawPolygon(xPoints, yPoints, p.length);
+    }
+
+    public static void fillPoly(Graphics g, Point2D.Double... p) {
+        int[] xPoints = new int[p.length];
+        int[] yPoints = new int[p.length];
+
+        for(int i=0; i<p.length; i++) {
+            xPoints[i] = (int) p[i].getX();
+            yPoints[i] = (int) p[i].getY();
+        }
+
+        g.fillPolygon(xPoints, yPoints, p.length);
+    }
 }
