@@ -9,8 +9,5 @@
         <module name="Arcade" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Arcade" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>
