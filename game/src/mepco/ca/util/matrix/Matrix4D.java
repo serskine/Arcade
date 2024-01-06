@@ -22,12 +22,7 @@ public class Matrix4D extends Matrix {
     }
 
     public Point3D transform(Point3D point) {
-
-        return new Point3D(
-                multiplyResult.cell[0][0],
-                multiplyResult.cell[0][1],
-                multiplyResult.cell[0][2]
-        );
+        throw new UnsupportedOperationException("TODO: Implement");
     }
 
     public Vector4D transform(Vector4D v) {

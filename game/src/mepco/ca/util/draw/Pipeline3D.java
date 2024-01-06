@@ -10,7 +10,7 @@ import java.awt.geom.Point2D;
 public class Pipeline3D {
     public Matrix4D worldToCamera;
     public Matrix4D projection;
-    public double screenW, double screenH;
+    public double screenW, screenH;
 
     public Pipeline3D(
             Matrix4D worldToCamera,
